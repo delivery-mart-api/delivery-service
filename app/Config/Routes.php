@@ -7,5 +7,8 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 $routes->post('/login', 'User::login');
+$routes->post('/login', 'User::login');
+$routes->post('/register', 'User::register');
 $routes->resource('transaction');
+$routes->resource('supermarket');
 
