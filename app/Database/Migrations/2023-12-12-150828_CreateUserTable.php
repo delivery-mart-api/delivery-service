@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class CreateSupermarketTable extends Migration
+class CreateUserTable extends Migration
 {
     public function up()
     {
@@ -32,7 +32,6 @@ class CreateSupermarketTable extends Migration
         $this->forge->addPrimaryKey('supermarket_id');
         $this->forge->addForeignKey('supermarket_username', 'oauth_users', 'username', 'CASCADE', 'CASCADE');
         $this->forge->createTable('supermarket', TRUE);
-        
     }
 
     public function down()
