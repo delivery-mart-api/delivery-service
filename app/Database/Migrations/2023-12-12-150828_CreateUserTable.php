@@ -3,39 +3,52 @@
 namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
+use CodeIgniter\Database\RawSql;
 
 class CreateUserTable extends Migration
 {
     public function up()
     {
         $this->forge->addField([
-            'supermarket_id'        => [
+            'id'        => [
                 'type'           => 'INT',
                 'constraint'     => 5,
 				'unsigned'       => true,
 				'auto_increment' => true
             ],
-            'supermarket_username'  => [
+            'firstname'  => [
                 'type'           => 'VARCHAR',
-                'constraint'     => 80
+                'constraint'     => 20
             ],
-            'supermarket_address'   => [
+            'lastname'   => [
 				'type'           => 'VARCHAR',
-				'constraint'     => '255'
+				'constraint'     => 20
 			],
-            'supermarket_telephone' => [
+            'phone' => [
                 'type'           => 'VARCHAR',
-				'constraint'     => '12'
+				'constraint'     => 13
+            ],
+            'password' => [
+                'type'           => 'VARCHAR',
+				'constraint'     => 80
+            ],
+            'scope' => [
+                'type'           => 'VARCHAR',
+                'constraint'     => 50,
+                'default'        => 'app'
+            ],
+            'created_at' => [
+                'type'    => 'TIMESTAMP',
+                'default' => new RawSql('CURRENT_TIMESTAMP'),
             ],
         ]);
 
-        $this->forge->addPrimaryKey('supermarket_id');
-        $this->forge->addForeignKey('supermarket_username', 'oauth_users', 'username', 'CASCADE', 'CASCADE');
-        $this->forge->createTable('supermarket', TRUE);
+        $this->forge->addPrimaryKey('id');
+        $this->forge->createTable('users', TRUE);
     }
 
     public function down()
     {
-        $this->forge->dropTable('supermarket');
+        $this->forge->dropTable('users');
     }
 }

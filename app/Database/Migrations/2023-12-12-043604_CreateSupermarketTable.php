@@ -3,6 +3,7 @@
 namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
+use CodeIgniter\Database\RawSql;
 
 class CreateSupermarketTable extends Migration
 {
@@ -17,7 +18,7 @@ class CreateSupermarketTable extends Migration
             ],
             'supermarket_username'  => [
                 'type'           => 'VARCHAR',
-                'constraint'     => 80
+                'constraint'     => 20
             ],
             'supermarket_address'   => [
 				'type'           => 'VARCHAR',
@@ -27,10 +28,22 @@ class CreateSupermarketTable extends Migration
                 'type'           => 'VARCHAR',
 				'constraint'     => '12'
             ],
+            'password' => [
+                'type'           => 'VARCHAR',
+				'constraint'     => 80
+            ],
+            'scope' => [
+                'type'           => 'VARCHAR',
+                'constraint'     => 50,
+                'default'        => 'app'
+            ],
+            'created_at' => [
+                'type'    => 'TIMESTAMP',
+                'default' => new RawSql('CURRENT_TIMESTAMP'),
+            ],
         ]);
 
         $this->forge->addPrimaryKey('supermarket_id');
-        $this->forge->addForeignKey('supermarket_username', 'oauth_users', 'username', 'CASCADE', 'CASCADE');
         $this->forge->createTable('supermarket', TRUE);
         
     }
