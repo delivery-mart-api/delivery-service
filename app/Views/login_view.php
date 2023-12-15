@@ -13,7 +13,7 @@
                 LOGIN
             </div>
             <div class="card-body">
-                <form action="" method="">
+                <form action="" method="POST">
                     <?php if(session()->getFlashdata('error')) :?>
                         <div class="alert alert-danger">
                             <?php echo session()->getFlashdata('error')?>
