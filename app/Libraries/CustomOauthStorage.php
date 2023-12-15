@@ -450,6 +450,13 @@ class CustomOauthStorage implements
         $builder->where($where);
         $user = $builder->get()->getRowArray();
 
+        if (!$user) {
+            $supermarketBuilder = $db->table('supermarket');
+            $supermarketWhere = ['supermarket_username' => $phone];
+            $user = $supermarketBuilder->where($supermarketWhere)->get()->getRowArray();
+            return $user ? array_merge(['user_id' => $user['supermarket_id']], $user) : false;
+        }
+
         // $stmt = $this->db->prepare($sql = sprintf('SELECT * from %s where username=:username', $this->config['user_table']));
         // $stmt->execute(array('username' => $username));
 
