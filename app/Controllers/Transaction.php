@@ -17,17 +17,19 @@ class Transaction extends ResourceController
 
         $rules = [
             'address' => 'required|min_length[6]',
+            'user_id' => 'required|numeric'
         ];
 
         if(!$this->validate($rules)){
             return $this->fail($this->validator->getErrors());
         } else{
             $data = [
-                'transaction_address' => $this->request->getVar('address'),
-                'transaction_delivery_cost' => 10000,
+                'user_id'      => $this->request->getVar('user_id'),
+                'address' => $this->request->getVar('address'),
+                'delivery_cost' => rand(2000, 100000),
             ];
             $transaction_id = $this->model->insert($data);
-            $data['transaction_id'] = $transaction_id;
+            $data['id'] = $transaction_id;
             return $this->respondCreated($data);
         }
     }
