@@ -68,7 +68,10 @@ class Filters extends BaseConfig
      * Example:
      * 'isLoggedIn' => ['before' => ['account/*', 'profiles/*']]
      */
+    // public array $filters = [
+    //     'oauthfilter' => ['before' => ['transaction', 'transaction/*']]
+    // ];
     public array $filters = [
-        'oauthfilter' => ['before' => ['transaction', 'transaction/*', 'supermarket', 'supermarket/*']]
+        
     ];
 }
