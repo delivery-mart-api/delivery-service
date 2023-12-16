@@ -2,6 +2,7 @@
 
 use CodeIgniter\RESTful\ResourceController;
 use App\Models\LoginModel;
+use App\Models\SupermarketModel;
 
 class Transaction extends ResourceController
 {
@@ -16,7 +17,9 @@ class Transaction extends ResourceController
         if ($cek == 0) {
             return("Wrong Authentication!" . $password);
         } else {
-            $transactions = $this->model->findAll();
+            $model1 = model(SupermarketModel::class);
+            $supermarket = $model1->findByUsername($username);
+            $transactions = $this->model->where('supermarket_id', $supermarket['supermarket_id'])->findAll();
             return $this->respond($transactions);
         }
     }
@@ -26,7 +29,8 @@ class Transaction extends ResourceController
 
         $rules = [
             'address' => 'required|min_length[6]',
-            'user_id' => 'required|numeric'
+            'user_id' => 'required|numeric',
+            'supermarket_id' => 'required|numeric'
         ];
 
         if(!$this->validate($rules)){
@@ -34,6 +38,7 @@ class Transaction extends ResourceController
         } else{
             $data = [
                 'user_id'      => $this->request->getVar('user_id'),
+                'supermarket_id'      => $this->request->getVar('supermarket_id'),
                 'address' => $this->request->getVar('address'),
                 'delivery_cost' => rand(2000, 100000),
             ];

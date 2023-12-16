@@ -32,11 +32,17 @@ class CreateTransactionTable extends Migration
                 'type'           => 'INT',
                 'constraint'     => 5,
 				'unsigned'       => true,
+            ],
+            'supermarket_id' => [
+                'type'           => 'INT',
+                'constraint'     => 5,
+				'unsigned'       => true,
             ]
         ]);
 
         $this->forge->addPrimaryKey('id');
         $this->forge->addForeignKey('user_id', 'users', 'id');
+        $this->forge->addForeignKey('supermarket_id', 'supermarket', 'supermarket_id');
         $this->forge->createTable('transaction', TRUE);
         
     }
