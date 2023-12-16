@@ -16,6 +16,10 @@ class CreateSupermarketTable extends Migration
 				'unsigned'       => true,
 				'auto_increment' => true
             ],
+            'supermarket_name'  => [
+                'type'           => 'VARCHAR',
+                'constraint'     => 255
+            ],
             'supermarket_username'  => [
                 'type'           => 'VARCHAR',
                 'constraint'     => 20
@@ -52,4 +56,12 @@ class CreateSupermarketTable extends Migration
     {
         $this->forge->dropTable('supermarket');
     }
+
+    // protected function beforeInsert(array &$data): array
+    // {
+    //     if (isset($data['password'])) {
+    //         $data['password'] = sha1($data['password']);
+    //     }
+    //     return $data;
+    // }
 }
