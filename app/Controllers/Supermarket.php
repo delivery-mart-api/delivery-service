@@ -20,6 +20,7 @@ class Supermarket extends ResourceController
             
         $supermarkets = $this->model->findAll();
         $data = [
+            'title'        => 'Supermarket | HeMart',
             'supermarkets' => $supermarkets
         ];
         return view('supermarket_view', $data);
