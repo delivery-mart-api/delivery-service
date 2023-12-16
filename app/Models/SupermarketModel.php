@@ -26,4 +26,15 @@ class SupermarketModel extends Model{
         }
         return $data;
     }
+
+    public function findByUsername($username)
+    {
+        $data = $this->where('supermarket_username', $username)->first();
+
+        if ($data) {
+            return $data;
+        }
+
+        return false;
+    }
 }
