@@ -21,8 +21,8 @@ class UserModel extends Model{
     }
 
     protected function passwordHash(array $data){
-        if(isset($data['data']['password'])){
-            $data['data']['password'] = password_hash($data['data']['password'], PASSWORD_DEFAULT);
+        if (isset($data['data']['password'])) {
+            $data['data']['password'] = sha1($data['data']['password']);
         }
         return $data;
     }

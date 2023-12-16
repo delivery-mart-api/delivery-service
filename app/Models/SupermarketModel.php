@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 class SupermarketModel extends Model{
     protected $table = 'supermarket';
     protected $primaryKey = 'supermarket_id';
-    protected $allowedFields = ['supermarket_username', 'supermarket_address', 'supermarket_telephone', 'password'];
+    protected $allowedFields = ['supermarket_name', 'supermarket_username', 'supermarket_address', 'supermarket_telephone', 'password'];
 
     protected $beforeInsert = ['beforeInsert'];
     protected $beforeUpdate = ['beforeUpdate'];
@@ -21,8 +21,8 @@ class SupermarketModel extends Model{
     }
 
     protected function passwordHash(array $data){
-        if(isset($data['data']['password'])){
-            $data['data']['password'] = password_hash($data['data']['password'], PASSWORD_DEFAULT);
+        if (isset($data['data']['password'])) {
+            $data['data']['password'] = sha1($data['data']['password']);
         }
         return $data;
     }
