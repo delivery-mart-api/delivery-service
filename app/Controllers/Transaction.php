@@ -2,6 +2,7 @@
 
 use CodeIgniter\RESTful\ResourceController;
 use App\Models\LoginModel;
+use App\Models\TransactionModel;
 use App\Models\SupermarketModel;
 
 class Transaction extends ResourceController
@@ -22,6 +23,18 @@ class Transaction extends ResourceController
             $transactions = $this->model->where('supermarket_id', $supermarket['supermarket_id'])->findAll();
             return $this->respond($transactions);
         }
+    }
+
+    public function history(){
+        $user = session()->get('num_user');
+        $model = model(TransactionModel::class);
+        $transactions = $model->findByUserId($user['id']);
+        $data = [
+            'title'        => 'My Transactions | HeMart',
+            'transactions' => $transactions
+        ];
+        return view('transaction_history_view', $data);
+
     }
 
     public function create(){
