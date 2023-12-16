@@ -1,17 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-</head>
-<body>
-    <div class="d-flex flex-column">
-        <div class="text-center">
+<?= $this->extend('layout/template'); ?>
+
+<?= $this->section('content'); ?>
+    <div class="container">
+        <div class="text-center mt-4">
             <h2 class="text-primary">Cari supermarket terdekat!</h2>
         </div>
-        <div class="d-flex flex-wrap p-3 item-center">
+        <div class="d-flex flex-wrap p-3">
         <?php foreach($supermarkets as $supermarket) : ?>
             <!-- Supermarket card -->
             <div class="card p-2 mx-2 my-4" style="width: 18rem">
@@ -25,5 +19,4 @@
             <?php endforeach; ?>
         </div>
     </div>
-</body>
-</html>
+<?= $this->endSection(); ?>
