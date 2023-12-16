@@ -4,8 +4,9 @@ use \App\Libraries\Oauth;
 use \OAuth2\Request;
 use CodeIgniter\API\ResponseTrait;
 use App\Models\SupermarketModel;
+use CodeIgniter\RESTful\ResourceController;
 
-class Supermarket extends BaseController
+class Supermarket extends ResourceController
 {
     use ResponseTrait;
     
@@ -13,8 +14,22 @@ class Supermarket extends BaseController
     protected $format = 'json';
     
     public function index(){
+        if (session()->get('num_user') == '') {
+            return redirect()->to('/');
+        }
+            
         $supermarkets = $this->model->findAll();
-        return view('supermarket_view');
+        $data = [
+            'supermarkets' => $supermarkets
+        ];
+        return view('supermarket_view', $data);
+    }
+
+    public function details($seg1 = null){
+        if (session()->get('num_user') == '') {
+            return redirect()->to('/');
+        }
+        return view('welcome_message');
     }
 
     public function login(){
@@ -36,6 +51,7 @@ class Supermarket extends BaseController
         }
 
         $rules = [
+            'supermarket_name' => 'required|min_length[3]|max_length[30]',
             'supermarket_username' => 'required|min_length[3]|max_length[20]',
             'supermarket_address' => 'required|min_length[8]|max_length[255]',
             'supermarket_telephone' => 'required|min_length[11]|max_length[13]|is_unique[supermarket.supermarket_telephone]',
@@ -44,10 +60,12 @@ class Supermarket extends BaseController
         ];
 
         if(! $this->validate($rules)){
-            return $this->fail($this->validator->getErrors());
+            return redirect()->to('/register')->withInput();
+            // return $this->fail($this->validator->getErrors());
         } else{
             $model = new SupermarketModel();
             $data = [
+                'supermarket_name' => $this->request->getVar('supermarket_name'),
                 'supermarket_username' => $this->request->getVar('supermarket_username'),
                 'supermarket_address' => $this->request->getVar('supermarket_address'),
                 'supermarket_telephone' => $this->request->getVar('supermarket_telephone'),
@@ -56,7 +74,6 @@ class Supermarket extends BaseController
 
             $supermatket_id = $model->insert($data);
             $data['supermarket_id'] = $supermatket_id;
-            unset($data['password']);
 
             return $this->respondCreated($data);
         }

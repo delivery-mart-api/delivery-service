@@ -10,16 +10,6 @@ use App\Models\UserModel;
 class User extends BaseController
 {
     use ResponseTrait;
-    
-    public function login(){
-        $oauth = new Oauth();
-        $request = new Request();
-        $respond = $oauth->server->handleTokenRequest($request->createFromGlobals());
-        $code = $respond->getStatusCode();
-        $body = $respond->getResponseBody();
-
-        return $this->respond(json_decode($body), $code);
-    }
 
     public function register(){
         helper('form');
@@ -38,19 +28,23 @@ class User extends BaseController
         ];
 
         if(! $this->validate($rules)){
-            return $this->fail($this->validator->getErrors());
+            session()->setFlashData('Error', 'Registrasi Gagal!');
+            return redirect()->to('/register')->withInput();
+            // return $this->fail($this->validator->getErrors());
         } else{
             $model = new UserModel();
             $data = [
-                'firstname' => $this->request->getVar('firstname'),
-                'lastname' => $this->request->getVar('lastname'),
-                'phone' => $this->request->getVar('phone'),
-                'password' => $this->request->getVar('password'),
+                'firstname' => $this->request->getPost('firstname'),
+                'lastname' => $this->request->getPost('lastname'),
+                'phone' => $this->request->getPost('phone'),
+                'password' => $this->request->getPost('password'),
             ];
 
             $user_id = $model->insert($data);
             $data['id'] = $user_id;
             unset($data['password']);
+
+            return redirect()->to('/');
 
             return $this->respondCreated($data);
         }
