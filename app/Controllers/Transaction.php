@@ -16,7 +16,7 @@ class Transaction extends ResourceController
         $password = sha1($seg2);
         $cek = $model->getUsers($username, $password);
         if ($cek == 0) {
-            return("Wrong Authentication!" . $password);
+            return $this->respond('Wrong Authentication', 401);
         } else {
             $model1 = model(SupermarketModel::class);
             $supermarket = $model1->findByUsername($username);

@@ -48,7 +48,7 @@
             <a href="#!">
               <div class="mask">
                 <div class="d-flex justify-content-start align-items-end h-100">
-                  <h5><span class="badge bg-success ms-2">Stok : <?= $product['stok']?></span></h5>
+                  <h5><span class="badge bg-success ms-2">Stok : <?= $product['stok'] ?></span></h5>
                 </div>
               </div>
               <div class="hover-overlay">
@@ -60,14 +60,11 @@
             <a href="" class="text-reset">
               <h5 class="card-title mb-3"><?= $product['nama']?></h5>
             </a>
-            <a href="" class="text-reset">
-              <p>Category</p>
-            </a>
             <h6 class="mb-3">
-              <p>Rp <?= $product['harga']?></p>
+              <p>Rp <?= number_format($product['harga'], 0, ',', '.'); ?></p>
             </h6>
             <div class="d-grid gap-2 col-6 mx-auto">
-                <a href="/checkout" class="btn btn-primary">Beli</a>
+                <a href="/checkout/<?= $product['id'] ?>" class="btn btn-primary">Beli</a>
             </div>
           </div>
         </div>

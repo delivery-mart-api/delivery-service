@@ -15,17 +15,17 @@
       <ul class="list-group mb-3">
         <li class="list-group-item d-flex align-items-center justify-content-between lh-condensed">
           <div>
-            <h6 class="my-1">Product name</h6>
+            <h6 class="my-1"><?= $product['nama'] ?></h6>
             <div class="d-flex input-group input-group-sm align-items-center">
               <span class="text-muted fw-light">Jumlah</span>
-              <input id="quantity" name="quantity" type="number" class="form-control no-focus-outline mx-3 focus-none" value="1" min="1" max="100">
+              <input id="quantity" name="quantity" type="number" class="form-control no-focus-outline mx-3 focus-none" value="1" min="1" max="<?= $product['stok'] ?>">
             </div>
           </div>
-          <p class="text-muted">Rp. <span id="harga"><?= number_format(15000, 0, ',', '.'); ?></span></p>
+          <p class="text-muted">Rp. <span id="harga"><?= number_format($product['harga'], 0, ',', '.'); ?></span></p>
         </li>
         <li class="list-group-item d-flex justify-content-between">
           <span>Total (Rupiah)</span>
-          <strong>Rp <span id="total"><?= number_format(15000, 0, ',', '.'); ?></span></strong>
+          <strong>Rp <span id="total"><?= number_format($product['harga'], 0, ',', '.'); ?></span></strong>
         </li>
       </ul>
     </div>
@@ -101,7 +101,7 @@
   function updateTotal() {
     var quantity = quantityInput.value;
     var maxQuantity = parseInt(quantityInput.getAttribute('max'));
-    var harga = 15000; // Change this to the actual price
+    var harga = <?= $product['harga'] ?>;
     var shippingCost = 0;
 
     shippingRadios.forEach(function (radio) {
@@ -116,18 +116,15 @@
 
     if (quantity > maxQuantity) {
       alert('Stok tidak cukup, hanya ada ' + maxQuantity);
-      // You can also display a more user-friendly notification using a modal or other UI element.
     }
   }
 
-  // Add event listeners
   quantityInput.addEventListener('input', updateTotal);
 
   shippingRadios.forEach(function (radio) {
     radio.addEventListener('change', updateTotal);
   });
 
-  // Initial update
   updateTotal();
 </script>
 
