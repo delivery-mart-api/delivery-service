@@ -21,6 +21,8 @@ $routes->get('/transaction/(:any)/(:any)', 'Transaction::index/$1/$2');
 $routes->post('/transaction', 'Transaction::create');
 $routes->get('/transaction', 'Transaction::history');
 
+$routes->get('/api/share/(:any)/(:any)', 'Core::index/$1/$2');
+
 $routes->get('/supermarket', 'Supermarket::index');
 $routes->get('/supermarket/(:any)', 'Supermarket::details/$1');
 
