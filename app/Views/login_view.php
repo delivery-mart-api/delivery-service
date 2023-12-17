@@ -33,23 +33,7 @@
                             <label for="inputPassword" class="form-label">
                                 Password
                             </label>
-                            <input type="password
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            " name="password" class="form-control" id="inputPassword">
+                            <input type="password" name="password" class="form-control" id="inputPassword">
                         </div>
                         <div class="mb-3">
                             <input type="submit" class="btn btn-primary" value="Login">
