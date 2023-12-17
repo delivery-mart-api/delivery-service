@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 class UserModel extends Model{
     protected $table = 'users';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['firstname', 'lastname', 'password', 'phone'];
+    protected $allowedFields = ['firstname', 'lastname', 'password', 'phone', 'age'];
 
     protected $beforeInsert = ['beforeInsert'];
     protected $beforeUpdate = ['beforeUpdate'];
@@ -25,5 +25,16 @@ class UserModel extends Model{
             $data['data']['password'] = sha1($data['data']['password']);
         }
         return $data;
+    }
+
+    public function findByUserId($id)
+    {
+        $data = $this->where('id', $id)->findAll();
+
+        if ($data) {
+            return $data;
+        }
+
+        return false;
     }
 }
