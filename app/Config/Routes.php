@@ -26,4 +26,4 @@ $routes->get('/api/share/(:any)/(:any)', 'Core::index/$1/$2');
 $routes->get('/supermarket', 'Supermarket::index');
 $routes->get('/supermarket/(:any)', 'Supermarket::details/$1');
 
-$routes->get('/checkout', 'Checkout::index');
+$routes->get('/checkout/(:any)', 'Checkout::index/$1');
