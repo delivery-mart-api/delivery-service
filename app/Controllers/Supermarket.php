@@ -32,16 +32,11 @@ class Supermarket extends ResourceController
         }
 
         // Fetch API Supermarket
-        $products = [
-            'produk1' => [
-                'nama' => 'Susu',
-                'harga' => 10000,
-                'stok' => 20,
-                'berat' => 200,
-                'gambar' => 'milk.png',
-            ]
-        ];
 
+        $client = \Config\Services::curlrequest();
+        $apiUrl = 'http://localhost:8081/api/products/indoapril/password';
+        $response = $client->request('GET', $apiUrl);
+        $products = json_decode($response->getBody(), true);
         $data = [
             'title'        => 'Proudcts | HeMart',
             'products'     => $products
