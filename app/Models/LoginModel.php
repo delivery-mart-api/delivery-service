@@ -15,7 +15,7 @@ class LoginModel extends Model
             $supermarketBuilder = $db->table('supermarket');
             $supermarketWhere = ['supermarket_username' => $phone, 'password' => $password];
             $user = $supermarketBuilder->where($supermarketWhere)->get()->getRowArray();
-            return $user ?  ($user) : false;
+            return $user ?  array_merge($user) : false;
         }
         return $user ? array_merge($user) : false;
     }

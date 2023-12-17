@@ -17,5 +17,19 @@ class TransactionModel extends Model{
 
         return false;
     }
+    
+    function calculateShare($share, $id) {
+        $transactions = $this->where('supermarket_id', $id)->findAll();
+        if (!$transactions) {
+            return 0;
+        }
+        $totalSupermarketShare = 0;
+        foreach($transactions as $transaction) :
+            $transactionPrice = $transaction['delivery_cost'];
+            $supermarketShare = ($transactionPrice) * ($share / 100);
+            $totalSupermarketShare += $supermarketShare;
+        endforeach;
+        return $totalSupermarketShare;
+    }
 }
 
