@@ -18,13 +18,15 @@ $routes->post('/mitra/login', 'LoginController::login_supermarket');
 $routes->post('/logout', 'LoginController::logout');
 
 $routes->get('/transaction/(:any)/(:any)', 'Transaction::index/$1/$2');
+$routes->get('/transactions/(:any)', 'Transaction::findSupermarket/$1');
 $routes->post('/transaction', 'Transaction::create');
 $routes->get('/transaction', 'Transaction::history');
 
 $routes->get('/api/share/(:any)/(:any)', 'Core::index/$1/$2');
-$routes->get('/api/delivery/(:any)/(:any)', 'Core::delivery/$1/$2');
 
 $routes->get('/supermarket', 'Supermarket::index');
 $routes->get('/supermarket/(:any)', 'Supermarket::details/$1');
 
 $routes->get('/checkout/(:any)', 'Checkout::index/$1');
+
+$routes->get('/users/(:any)', 'User::findById/$1');

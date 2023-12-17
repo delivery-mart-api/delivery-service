@@ -49,4 +49,9 @@ class User extends BaseController
             return $this->respondCreated($data);
         }
     }
+
+    public function findById($seg1 = null) {
+        $data = model(UserModel::class)->FindByUserId($seg1);
+        return $this->respond($data);
+    }
 }

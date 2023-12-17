@@ -60,4 +60,9 @@ class Transaction extends ResourceController
             return $this->respondCreated($data);
         }
     }
+
+    public function findSupermarket($seg1 = null) {
+        $transactions = model(TransactionModel::class)->findBySupermarketId($seg1);
+        return $this->respond($transactions);
+    }
 }
