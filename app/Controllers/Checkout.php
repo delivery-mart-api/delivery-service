@@ -8,6 +8,9 @@ class Checkout extends BaseController
 {
     public function index()
     {   
+        if (session()->get('num_user') == '') {
+            return redirect()->to('/');
+        }
         $data = [
             'title'     => 'Checkout | HeMart'
         ];
