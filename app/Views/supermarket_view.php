@@ -16,7 +16,7 @@
                     <a href="/supermarket/<?= $supermarket['supermarket_id']?>" class="btn btn-primary">Kunjungi</a>
                 </div>
             </div>
-            <?php endforeach; ?>
+        <?php endforeach; ?>
         </div>
     </div>
 <?= $this->endSection(); ?>

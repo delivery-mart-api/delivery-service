@@ -23,3 +23,5 @@ $routes->get('/transaction', 'Transaction::history');
 
 $routes->get('/supermarket', 'Supermarket::index');
 $routes->get('/supermarket/(:any)', 'Supermarket::details/$1');
+
+$routes->get('/checkout', 'Checkout::index');

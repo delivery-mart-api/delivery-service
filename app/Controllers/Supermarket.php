@@ -30,7 +30,23 @@ class Supermarket extends ResourceController
         if (session()->get('num_user') == '') {
             return redirect()->to('/');
         }
-        return view('welcome_message');
+
+        // Fetch API Supermarket
+        $products = [
+            'produk1' => [
+                'nama' => 'Susu',
+                'harga' => 10000,
+                'stok' => 20,
+                'berat' => 200,
+                'gambar' => 'milk.png',
+            ]
+        ];
+
+        $data = [
+            'title'        => 'Proudcts | HeMart',
+            'products'     => $products
+        ];
+        return view('product_view', $data);
     }
 
     public function login(){
