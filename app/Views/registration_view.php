@@ -17,51 +17,52 @@
                     REGISTER
                 </div>
                 <div class="card-body">
-                <?php if(session()->getFlashdata('error')) :?>
-                    <div class="alert alert-danger">
-                        <? session()->getFlashdata('error')?>
-                    </div>
-                <?php endif;?>
+                    <?php if(session()->getFlashdata('error')) :?>
+                        <div class="alert alert-danger">
+                            <?php echo implode('<br>', session()->getFlashdata('error')); ?>
+                        </div>
+                    <?php endif; ?>
                     <form action="/register" method="POST">
                         <div class="mb-3">
                             <label for="inputFn" class="form-label">
                                 First Name
                             </label>
-                            <input type="text" name="firstname" class="form-control" value="<?php echo session()->getFlashdata('firstname')?>" id="inputFN">
+                            <input type="text" name="firstname" class="form-control" value="<?php echo session()->getFlashdata('firstname')?>" id="inputFN" required>
                         </div>
                         <div class="mb-3">
                             <label for="inputLn" class="form-label">
                                 Last Name
                             </label>
-                            <input type="text" name="lastname" class="form-control" value="<?php echo session()->getFlashdata('lastname')?>" id="inputLN">
+                            <input type="text" name="lastname" class="form-control" value="<?php echo session()->getFlashdata('lastname')?>" id="inputLN" required>
                         </div>
                         <div class="mb-3">
                             <label for="inputPhone" class="form-label">
                                 Phone
                             </label>
-                            <input type="text" name="phone" class="form-control" id="inputPhone">
+                            <input type="text" name="phone" class="form-control" id="inputPhone" required>
                         </div>
                         <div class="mb-3">
                             <label for="inputPassword" class="form-label">
                                 Password
                             </label>
-                            <input type="password" name="password" class="form-control" id="inputPassword">
+                            <input type="password" name="password" class="form-control" id="inputPassword" required>
                         </div>
                         <div class="mb-3">
                             <label for="inputPasswordConfirm" class="form-label">
                                 Password Confirm
                             </label>
-                            <input type="password" name="password_confirm" class="form-control" id="inputPasswordConfirm">
+                            <input type="password" name="password_confirm" class="form-control" id="inputPasswordConfirm" required>
                         </div>
                         <div class="mb-3">
-                            <input type="submit" class="btn btn-primary" value="Buat Akun">
+                            <input type="submit" class="btn btn-primary" value="Buat Akun" required>
                         </div>
                     </form>
                     
                 </div>
             </div>
-            <div class='my-2'>
+            <div class='my-2 d-flex justify-content-between'>
                 <a href='/mitra/register' class='text-primary fw-5'>Ingin menjadi mitra kami?</a>
+                <a href='/' class='text-primary fw-5'>Login sebagai pengguna</a>
             </div>
         </div>
     </div>

@@ -18,22 +18,22 @@
                 </div>
                 <div class="card-body">
                     <form action="/" method="POST">
-                        <?php if(session()->getFlashdata('error')) :?>
-                            <div class="alert alert-danger">
-                                <?php echo session()->getFlashdata('error')?>
-                            </div>
-                        <?php endif;?>
+                    <?php if(session()->getFlashdata('error')) :?>
+                        <div class="alert alert-danger">
+                            <?php echo session()->getFlashdata('error'); ?>
+                        </div>
+                    <?php endif; ?>
                         <div class="mb-3">
                             <label for="inputPhone" class="form-label">
                                 Phone Number
                             </label>
-                            <input type="text" name="phone" class="form-control" value="<?php echo session()->getFlashdata('phone')?>" id="inputPhone">
+                            <input type="text" name="phone" class="form-control" value="<?php echo session()->getFlashdata('phone')?>" id="inputPhone" required>
                         </div>
                         <div class="mb-3">
                             <label for="inputPassword" class="form-label">
                                 Password
                             </label>
-                            <input type="password" name="password" class="form-control" id="inputPassword">
+                            <input type="password" name="password" class="form-control" id="inputPassword" required>
                         </div>
                         <div class="mb-3">
                             <input type="submit" class="btn btn-primary" value="Login">

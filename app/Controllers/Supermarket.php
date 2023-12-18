@@ -73,8 +73,8 @@ class Supermarket extends ResourceController
         ];
 
         if(! $this->validate($rules)){
-            return redirect()->to('/register')->withInput();
-            // return $this->fail($this->validator->getErrors());
+            session()->setFlashdata('error', $this->validator->getErrors());
+            return redirect()->to('/mitra/register')->withInput();
         } else{
             $model = new SupermarketModel();
             $data = [
@@ -87,7 +87,7 @@ class Supermarket extends ResourceController
 
             $supermatket_id = $model->insert($data);
             $data['supermarket_id'] = $supermatket_id;
-            
+            session()->setFlashdata('success', 'Registration successful!');
             return redirect()->to('/');
         }
     }
