@@ -31,8 +31,10 @@ class Supermarket extends ResourceController
             return redirect()->to('/');
         }
         
+        $supermarket = $this->model->findById($seg1);
+        // dd($supermarket);
         $client = \Config\Services::curlrequest();
-        $apiUrl = 'http://localhost:8081/api/products/indoapril/password';
+        $apiUrl = "http://localhost:8081/api/products/{$supermarket['supermarket_username']}/{$supermarket['password']}";
         $response = $client->request('GET', $apiUrl);
         $products = json_decode($response->getBody(), true);
         

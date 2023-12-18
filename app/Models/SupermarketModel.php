@@ -29,7 +29,7 @@ class SupermarketModel extends Model{
 
     public function findById($id)
     {
-        $data = $this->where('supermarket_id', $id)->findAll();
+        $data = $this->where('supermarket_id', $id)->first();
 
         if ($data) {
             return $data;
