@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 class TransactionModel extends Model{
     protected $table = 'transaction';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['delivery_cost', 'address', 'created_at', 'user_id', 'supermarket_id, product_id'];
+    protected $allowedFields = ['delivery_cost', 'address', 'created_at', 'user_id', 'supermarket_id'];
 
     public function findByUserId($id)
     {
@@ -18,9 +18,9 @@ class TransactionModel extends Model{
         return false;
     }
 
-    public function findBySupermarketId($id)
+    public function findAllTransaction()
     {
-        $data = $this->where('supermarket_id', $id)->findAll();
+        $data = $this->findAll();
 
         if ($data) {
             return $data;

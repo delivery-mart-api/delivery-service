@@ -61,8 +61,8 @@ class Transaction extends ResourceController
         }
     }
 
-    public function findSupermarket($seg1 = null) {
-        $transactions = model(TransactionModel::class)->findBySupermarketId($seg1);
+    public function getTransaction() {
+        $transactions = model(TransactionModel::class)->findAllTransaction();
         return $this->respond($transactions);
     }
 }

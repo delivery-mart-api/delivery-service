@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 class UserModel extends Model{
     protected $table = 'users';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['firstname', 'lastname', 'password', 'phone', 'age'];
+    protected $allowedFields = ['firstname', 'lastname', 'password', 'phone'];
 
     protected $beforeInsert = ['beforeInsert'];
     protected $beforeUpdate = ['beforeUpdate'];
@@ -27,9 +27,9 @@ class UserModel extends Model{
         return $data;
     }
 
-    public function findByUserId($id)
+    public function findAllUser()
     {
-        $data = $this->where('id', $id)->findAll();
+        $data = $this->findAll();
 
         if ($data) {
             return $data;

@@ -50,8 +50,8 @@ class User extends BaseController
         }
     }
 
-    public function findById($seg1 = null) {
-        $data = model(UserModel::class)->FindByUserId($seg1);
+    public function findAll() {
+        $data = model(UserModel::class)->findAllUser();
         return $this->respond($data);
     }
 }
