@@ -64,7 +64,7 @@ class Supermarket extends ResourceController
 
         $rules = [
             'supermarket_name' => 'required|min_length[3]|max_length[30]',
-            'supermarket_username' => 'required|min_length[3]|max_length[20]',
+            'supermarket_username' => 'required|min_length[3]|max_length[20]|is_unique[supermarket.supermarket_username]',
             'supermarket_address' => 'required|min_length[8]|max_length[255]',
             'supermarket_telephone' => 'required|min_length[11]|max_length[13]|is_unique[supermarket.supermarket_telephone]',
             'password' => 'required|min_length[8]',
