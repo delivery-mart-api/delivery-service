@@ -11,7 +11,25 @@ class User extends BaseController
 {
     use ResponseTrait;
 
+    public function index(){
+        if (session()->get('num_user') == '') {
+            return redirect()->to('/');
+        }
+
+        $user = session()->get('num_user');
+
+        $data = [
+            'title'     => 'My Profile',
+            'user'      => $user
+        ];
+
+        return view('user_view', $data);
+    }
+
     public function register(){
+        if (session()->get('num_user') == '') {
+            return redirect()->to('/');
+        }
         helper('form');
         $data = [];
 
@@ -48,6 +66,42 @@ class User extends BaseController
 
             return $this->respondCreated($data);
         }
+    }
+
+    public function update()
+    {
+        helper('form');
+        $user = session()->get('num_user');
+
+        $rules = [
+            'firstname' => 'required|min_length[3]|max_length[20]',
+            'lastname' => 'required|min_length[3]|max_length[20]',
+            'password' => 'permit_empty|min_length[8]',
+            'password_confirm' => 'matches[password]',
+        ];
+
+        if (!$this->validate($rules)) {
+            session()->setFlashData('Error', 'Update Profile Gagal!');
+            return redirect()->to('/profile')->withInput();
+        }
+
+        $model = new UserModel();
+
+        $data = [
+            'firstname' => $this->request->getPost('firstname'),
+            'lastname' => $this->request->getPost('lastname'),
+        ];
+
+        $password = $this->request->getPost('password');
+        if (!empty($password)) {
+            $data['password'] = $password;
+        }
+
+        $model->update($user['id'], $data);
+
+        $newUserData = $model->find($user['id']);
+        session()->set('num_user', $newUserData);
+        return redirect()->to('/profile');
     }
 
     public function findAll() {

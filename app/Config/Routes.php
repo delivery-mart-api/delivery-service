@@ -15,6 +15,9 @@ $routes->post('/mitra/register', 'Supermarket::register');
 $routes->get('/mitra/register', 'Registration::registration_supermarket');
 $routes->post('/mitra/login', 'LoginController::login_supermarket');
 
+$routes->get('/profile', 'User::index');
+$routes->put('/profile', 'User::update');
+
 $routes->post('/logout', 'LoginController::logout');
 
 $routes->get('/transaction/(:any)/(:any)', 'Transaction::index/$1/$2');
