@@ -26,6 +26,9 @@ class Transaction extends ResourceController
     }
 
     public function history(){
+        if (session()->get('num_user') == '') {
+            return redirect()->to('/');
+        }
         $user = session()->get('num_user');
 
         $client = \Config\Services::curlrequest();
@@ -50,6 +53,9 @@ class Transaction extends ResourceController
     }
 
     public function create(){
+        if (session()->get('num_user') == '') {
+            return redirect()->to('/');
+        }
         helper(['form']);
 
         $rules = [
