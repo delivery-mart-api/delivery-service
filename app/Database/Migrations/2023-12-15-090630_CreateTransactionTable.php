@@ -42,7 +42,11 @@ class CreateTransactionTable extends Migration
                 'type'           => 'INT',
                 'constraint'     => 5,
 				'unsigned'       => true,
-            ]
+            ],
+            'quantity' => [
+                'type'           => 'INT',
+                'constraint'     => 5,
+            ],
         ]);
 
         $this->forge->addPrimaryKey('id');

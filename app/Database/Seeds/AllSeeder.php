@@ -42,6 +42,7 @@ class AllSeeder extends Seeder
                 'user_id' => '1',
                 'supermarket_id' => '1',
                 'product_id' => '1',
+                'quantity' => 2
             ]
         ];
 
