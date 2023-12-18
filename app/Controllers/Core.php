@@ -11,7 +11,7 @@ class Core extends ResourceController
     public function index($seg1 = null, $seg2 = null){
         $model = model(LoginModel::class);
         $username = $seg1;
-        $password = sha1($seg2);
+        $password = $seg2;
         $cek = $model->getUsers($username, $password);
         if ($cek == 0) {
             return $this->respond('Wrong Authentication', 401);
