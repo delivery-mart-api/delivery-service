@@ -18,7 +18,6 @@ $routes->post('/mitra/login', 'LoginController::login_supermarket');
 $routes->post('/logout', 'LoginController::logout');
 
 $routes->get('/transaction/(:any)/(:any)', 'Transaction::index/$1/$2');
-$routes->get('/transactions', 'Transaction::getTransaction');
 $routes->post('/transaction', 'Transaction::create');
 $routes->get('/transaction', 'Transaction::history');
 

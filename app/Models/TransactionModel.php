@@ -17,17 +17,6 @@ class TransactionModel extends Model{
 
         return false;
     }
-
-    public function findAllTransaction()
-    {
-        $data = $this->findAll();
-
-        if ($data) {
-            return $data;
-        }
-
-        return false;
-    }
     
     function calculateShare($share, $id) {
         $transactions = $this->where('supermarket_id', $id)->findAll();
