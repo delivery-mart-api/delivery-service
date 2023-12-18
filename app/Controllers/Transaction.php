@@ -21,6 +21,10 @@ class Transaction extends ResourceController
             $model1 = model(SupermarketModel::class);
             $supermarket = $model1->findByUsername($username);
             $transactions = $this->model->where('supermarket_id', $supermarket['supermarket_id'])->findAll();
+
+            foreach ($transactions as &$transaction) {
+                $transaction['supermarket_username'] = $supermarket['supermarket_username'];
+            }
             return $this->respond($transactions);
         }
     }
