@@ -17,10 +17,12 @@ class LoginController extends BaseController
 
     public function login_user(){
         $model = model(LoginModel::class);
+        
         $phone = $this->request->getPost('phone');
         $password = sha1($this->request->getPost('password'));
         $cek = $model->getUsers($phone, $password);
         if ($cek == 0){
+            session()->setFlashdata('error', 'Phone atau password salah!');
             return redirect()->to('/');
         } else {
             session()->set('num_user', $cek);

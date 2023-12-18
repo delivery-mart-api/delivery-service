@@ -17,11 +17,15 @@
                     MITRA REGISTER 
                 </div>
                 <div class="card-body">
-                <?php if(session()->getFlashdata('error')) :?>
-                    <div class="alert alert-danger">
-                        <? session()->getFlashdata('error')?>
-                    </div>
-                <?php endif;?>
+                        <p class="alert alert-info">
+                            Mohon diingat Username dan Password yang diregistrasikan. <br>
+                            Gunakan Username dan Password sebagai autentikasi untuk mengakses data supermarket anda.
+                        </p>
+                    <?php if(session()->getFlashdata('error')) :?>
+                        <div class="alert alert-danger">
+                            <?php echo implode('<br>', session()->getFlashdata('error')); ?>
+                        </div>
+                    <?php endif; ?>
                     <form action="/mitra/register" method="POST">
                         <div class="mb-3">
                             <label for="inputName" class="form-label">
@@ -65,6 +69,9 @@
                     </form>
                     
                 </div>
+            </div>
+            <div class='my-2'>
+                <a href='/' class='text-primary fw-5'>Login sebagai pengguna</a>
             </div>
         </div>
     </div>

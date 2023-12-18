@@ -27,9 +27,6 @@ class User extends BaseController
     }
 
     public function register(){
-        if (session()->get('num_user') == '') {
-            return redirect()->to('/');
-        }
         helper('form');
         $data = [];
 
@@ -46,9 +43,8 @@ class User extends BaseController
         ];
 
         if(! $this->validate($rules)){
-            session()->setFlashData('Error', 'Registrasi Gagal!');
+            session()->setFlashdata('error', $this->validator->getErrors());
             return redirect()->to('/register')->withInput();
-            // return $this->fail($this->validator->getErrors());
         } else{
             $model = new UserModel();
             $data = [
