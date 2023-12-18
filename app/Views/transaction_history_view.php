@@ -11,6 +11,8 @@
         <?php else : ?>
             <?php foreach ($transactions as $transaction) : ?>
                 <ul class="list-group list-group-horizontal mx-auto my-2">
+                    <li class="list-group-item"><?= $products[$transaction['product_id']]?></li>
+                    <li class="list-group-item"><?= $transaction['quantity']?></li>
                     <li class="list-group-item">Rp <?= $transaction['delivery_cost']?></li>
                     <li class="list-group-item"><?= $transaction['address']?></li>
                     <li class="list-group-item"><?= $transaction['created_at']?></li>
