@@ -27,7 +27,7 @@ class AllSeeder extends Seeder
                 'supermarket_username' => 'indoapril',
                 'supermarket_address' => 'Jalan H Juanda No.1, Coblong',
                 'supermarket_telephone' => '089912345678',
-                'password' => 'password',
+                'password' => sha1('password'),
             ]
         ];
 
