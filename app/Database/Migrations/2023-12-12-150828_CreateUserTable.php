@@ -32,11 +32,6 @@ class CreateUserTable extends Migration
                 'type'           => 'VARCHAR',
 				'constraint'     => 80
             ],
-            'scope' => [
-                'type'           => 'VARCHAR',
-                'constraint'     => 50,
-                'default'        => 'app'
-            ],
             'created_at' => [
                 'type'    => 'TIMESTAMP',
                 'default' => new RawSql('CURRENT_TIMESTAMP'),

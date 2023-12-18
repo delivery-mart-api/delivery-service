@@ -37,6 +37,11 @@ class CreateTransactionTable extends Migration
                 'type'           => 'INT',
                 'constraint'     => 5,
 				'unsigned'       => true,
+            ],
+            'product_id' => [
+                'type'           => 'INT',
+                'constraint'     => 5,
+				'unsigned'       => true,
             ]
         ]);
 

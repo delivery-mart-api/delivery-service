@@ -43,7 +43,8 @@ class Transaction extends ResourceController
         $rules = [
             'address' => 'required|min_length[6]',
             'user_id' => 'required|numeric',
-            'supermarket_id' => 'required|numeric'
+            'supermarket_id' => 'required|numeric',
+            'product_id' => 'required|numeric',
         ];
 
         if(!$this->validate($rules)){
@@ -54,6 +55,7 @@ class Transaction extends ResourceController
                 'supermarket_id'      => $this->request->getVar('supermarket_id'),
                 'address' => $this->request->getVar('address'),
                 'delivery_cost' => rand(2000, 100000),
+                'product_id'      => $this->request->getVar('product_id'),
             ];
             $transaction_id = $this->model->insert($data);
             $data['id'] = $transaction_id;
