@@ -39,7 +39,7 @@ class Supermarket extends ResourceController
         $products = json_decode($response->getBody(), true);
         
         $client = \Config\Services::curlrequest();
-        $coreUrl = 'http://localhost:8081/rekomendasi';
+        $coreUrl = "http://localhost:8081/rekomendasi/{$supermarket['supermarket_username']}/{$supermarket['password']}";
         $response = $client->request('GET', $coreUrl);
         $recommendations = json_decode($response->getBody(), true);
 

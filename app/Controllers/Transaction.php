@@ -35,8 +35,10 @@ class Transaction extends ResourceController
         }
         $user = session()->get('num_user');
 
+
+        $supermarket = model(SupermarketModel::class)->findById('1');
         $client = \Config\Services::curlrequest();
-        $apiUrl = 'http://localhost:8081/api/products/indoapril/password';
+        $apiUrl = "http://localhost:8081/api/products/{$supermarket['supermarket_username']}/{$supermarket['password']}";
         $response = $client->request('GET', $apiUrl);
         $products = json_decode($response->getBody(), true);
 
