@@ -27,11 +27,23 @@ class Transaction extends ResourceController
 
     public function history(){
         $user = session()->get('num_user');
+
+        $client = \Config\Services::curlrequest();
+        $apiUrl = 'http://localhost:8081/api/products/indoapril/password';
+        $response = $client->request('GET', $apiUrl);
+        $products = json_decode($response->getBody(), true);
+
+        $productsName = [];
+        foreach ($products as $product) {
+            $productsName[$product['id']] = $product['nama'];
+        }
+
         $model = model(TransactionModel::class);
         $transactions = $model->findByUserId($user['id']);
         $data = [
             'title'        => 'My Transactions | HeMart',
-            'transactions' => $transactions
+            'transactions' => $transactions,
+            'products'     => $productsName,
         ];
         return view('transaction_history_view', $data);
 
