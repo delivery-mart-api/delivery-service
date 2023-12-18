@@ -39,7 +39,8 @@ class Supermarket extends ResourceController
         $products = json_decode($response->getBody(), true);
         $data = [
             'title'        => 'Proudcts | HeMart',
-            'products'     => $products
+            'products'     => $products,
+            'supermarket'  => $seg1
         ];
         return view('product_view', $data);
     }
@@ -86,8 +87,8 @@ class Supermarket extends ResourceController
 
             $supermatket_id = $model->insert($data);
             $data['supermarket_id'] = $supermatket_id;
-
-            return $this->respondCreated($data);
+            
+            return redirect()->to('/');
         }
     }
 }

@@ -3,10 +3,11 @@
 namespace App\Controllers;
 
 use App\Models\UserModel; 
+use App\Models\SupermarketModel; 
 
 class Checkout extends BaseController
 {
-    public function index($seg1 = null)
+    public function index($seg1 = null, $seg2 = null)
     {   
         if (session()->get('num_user') == '') {
             return redirect()->to('/');
@@ -17,23 +18,27 @@ class Checkout extends BaseController
         $response = $client->request('GET', $apiUrl);
         $products = json_decode($response->getBody(), true);
 
+        $user = session()->get('num_user');
+
+        $supermarket = model(SupermarketModel::class)->findById($seg1);
         $foundProduct = null;
 
         foreach ($products as $product) {
-            if ($product['id'] == $seg1) {
+            if ($product['id'] == $seg2) {
                 $foundProduct = $product;
                 break;
             }
         }
 
         if ($foundProduct == null){
-            return redirect()->to("/");
+            return redirect()->to("/supermarket/$seg1");
         }
         
         $data = [
             'title'     => 'Checkout | HeMart',
-            'product'   => $foundProduct
-        
+            'product'   => $foundProduct,
+            'supermarket' => $seg1,
+            'user'      => $user['id']
         ];
         return view('checkout_view', $data);
     }

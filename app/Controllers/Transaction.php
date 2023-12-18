@@ -45,21 +45,24 @@ class Transaction extends ResourceController
             'user_id' => 'required|numeric',
             'supermarket_id' => 'required|numeric',
             'product_id' => 'required|numeric',
+            'quantity' => 'required|numeric',
         ];
 
         if(!$this->validate($rules)){
             return $this->fail($this->validator->getErrors());
         } else{
+            $user = session()->get('num_user');
             $data = [
-                'user_id'      => $this->request->getVar('user_id'),
-                'supermarket_id'      => $this->request->getVar('supermarket_id'),
-                'address' => $this->request->getVar('address'),
-                'delivery_cost' => rand(2000, 100000),
-                'product_id'      => $this->request->getVar('product_id'),
+                'user_id'      => $this->request->getPost('user_id'),
+                'supermarket_address'      => $this->request->getPost('address'),
+                'supermarket_id'      => $this->request->getPost('supermarket_id'),
+                'address' => $this->request->getPost('address'),
+                'delivery_cost' => $this->request->getPost('shipping'),
+                'product_id'      => $this->request->getPost('product_id'),
+                'quantity'      => $this->request->getPost('quantity'),
             ];
-            $transaction_id = $this->model->insert($data);
-            $data['id'] = $transaction_id;
-            return $this->respondCreated($data);
+            $transaction = $this->model->insert($data);
+            return redirect()->to("/transaction");
         }
     }
 }
