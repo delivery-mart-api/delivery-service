@@ -30,16 +30,21 @@ class Supermarket extends ResourceController
         if (session()->get('num_user') == '') {
             return redirect()->to('/');
         }
-
-        // Fetch API Supermarket
-
+        
         $client = \Config\Services::curlrequest();
         $apiUrl = 'http://localhost:8081/api/products/indoapril/password';
         $response = $client->request('GET', $apiUrl);
         $products = json_decode($response->getBody(), true);
+        
+        $client = \Config\Services::curlrequest();
+        $coreUrl = 'http://localhost:8081/rekomendasi';
+        $response = $client->request('GET', $coreUrl);
+        $recommendations = json_decode($response->getBody(), true);
+
         $data = [
             'title'        => 'Proudcts | HeMart',
             'products'     => $products,
+            'recommendations'     => $recommendations,
             'supermarket'  => $seg1
         ];
         return view('product_view', $data);
