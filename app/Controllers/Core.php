@@ -4,6 +4,7 @@ use CodeIgniter\RESTful\ResourceController;
 use App\Models\LoginModel;
 use App\Models\TransactionModel;
 use App\Models\SupermarketModel;
+use App\Models\UserModel;
 
 class Core extends ResourceController
 {

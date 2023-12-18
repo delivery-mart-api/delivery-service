@@ -26,4 +26,15 @@ class UserModel extends Model{
         }
         return $data;
     }
+
+    public function findAllUser()
+    {
+        $data = $this->findAll();
+
+        if ($data) {
+            return $data;
+        }
+
+        return false;
+    }
 }

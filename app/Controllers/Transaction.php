@@ -65,4 +65,9 @@ class Transaction extends ResourceController
             return redirect()->to("/transaction");
         }
     }
+
+    public function getTransaction() {
+        $transactions = model(TransactionModel::class)->findAllTransaction();
+        return $this->respond($transactions);
+    }
 }

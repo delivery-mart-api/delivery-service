@@ -49,4 +49,9 @@ class User extends BaseController
             return $this->respondCreated($data);
         }
     }
+
+    public function findAll() {
+        $data = model(UserModel::class)->findAllUser();
+        return $this->respond($data);
+    }
 }
