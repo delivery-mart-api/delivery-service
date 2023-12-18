@@ -64,7 +64,7 @@
               <p>Rp <?= number_format($product['harga'], 0, ',', '.'); ?></p>
             </h6>
             <div class="d-grid gap-2 col-6 mx-auto">
-                <a href="/checkout/<?= $product['id'] ?>" class="btn btn-primary">Beli</a>
+                <a href="/supermarket/<?= $supermarket ?>/checkout/<?= $product['id'] ?>" class="btn btn-primary">Beli</a>
             </div>
           </div>
         </div>
