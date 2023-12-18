@@ -39,7 +39,8 @@ class Supermarket extends ResourceController
         $products = json_decode($response->getBody(), true);
         $data = [
             'title'        => 'Proudcts | HeMart',
-            'products'     => $products
+            'products'     => $products,
+            'supermarket'  => $seg1
         ];
         return view('product_view', $data);
     }
@@ -64,7 +65,7 @@ class Supermarket extends ResourceController
 
         $rules = [
             'supermarket_name' => 'required|min_length[3]|max_length[30]',
-            'supermarket_username' => 'required|min_length[3]|max_length[20]',
+            'supermarket_username' => 'required|min_length[3]|max_length[20]|is_unique[supermarket.supermarket_username]',
             'supermarket_address' => 'required|min_length[8]|max_length[255]',
             'supermarket_telephone' => 'required|min_length[11]|max_length[13]|is_unique[supermarket.supermarket_telephone]',
             'password' => 'required|min_length[8]',
@@ -86,8 +87,8 @@ class Supermarket extends ResourceController
 
             $supermatket_id = $model->insert($data);
             $data['supermarket_id'] = $supermatket_id;
-
-            return $this->respondCreated($data);
+            
+            return redirect()->to('/');
         }
     }
 }

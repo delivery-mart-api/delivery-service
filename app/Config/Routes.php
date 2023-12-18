@@ -25,8 +25,9 @@ $routes->get('/transaction', 'Transaction::history');
 $routes->get('/api/share/(:any)/(:any)', 'Core::index/$1/$2');
 
 $routes->get('/supermarket', 'Supermarket::index');
+$routes->get('/supermarket/(:any)/checkout/(:any)', 'Checkout::index/$1/$2');
 $routes->get('/supermarket/(:any)', 'Supermarket::details/$1');
 
-$routes->get('/checkout/(:any)', 'Checkout::index/$1');
+$routes->post('/order', 'Transaction::create');
 
 $routes->get('/users', 'User::findAll');
