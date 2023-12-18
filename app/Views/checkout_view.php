@@ -5,9 +5,10 @@
   <div class="py-4 text-center">
     <h2>Checkout form</h2>
   </div>
-
+  <form class="needs-validation" action="/order" method="POST">
   <div class="row mb-4">
     <div class="col-md-4 order-md-2 mb-4">
+      
       <h4 class="d-flex justify-content-between align-items-center mb-3">
         <span class="text-muted">Keranjangmu</span>
         <span class="badge badge-secondary badge-pill">3</span>
@@ -31,9 +32,8 @@
     </div>
     <div class="col-md-8 order-md-1">
       <h4 class="mb-3">Alamat Pengantaran</h4>
-      <form class="needs-validation">
         <div class="mb-3">
-          <input type="text" class="form-control" id="address" placeholder="Tulis alamatmu..." required>
+          <input type="text" class="form-control" id="address" name="address" placeholder="Tulis alamatmu..." required>
         </div>
 
         <h4 class="mb-3">Tipe Pengiriman</h4>
@@ -42,7 +42,7 @@
             <li class="list-group-item d-flex flex-row align-items-center justify-content-between lh-condensed">
                 <div class="d-flex flex-column">
                     <div class="custom-control custom-radio">
-                        <input id="cash" name="shipping" type="radio" class="my-0 custom-control-input" value="15000" checked required>
+                        <input id="instantmotor" name="shipping" type="radio" class="my-0 custom-control-input" value="15000" checked required>
                         <label class="custom-control-label" for="instan">Instan - Motor</label>
                     </div>
                     <small class="text-muted">1-2 jam - Maks. 20 kg</small>
@@ -52,7 +52,7 @@
             <li class="list-group-item d-flex flex-row align-items-center justify-content-between lh-condensed">
                 <div class="d-flex flex-column">
                     <div class="custom-control custom-radio">
-                        <input id="cash" name="shipping" type="radio" class="my-0 custom-control-input" value="8000" required>
+                        <input id="samedaymotor" name="shipping" type="radio" class="my-0 custom-control-input" value="8000" required>
                         <label class="custom-control-label" for="instan">SameDay - Motor</label>
                     </div>
                     <small class="text-muted">6-8 jam - Maks. 5 kg</small>
@@ -62,7 +62,7 @@
             <li class="list-group-item d-flex flex-row align-items-center justify-content-between lh-condensed">
                 <div class="d-flex flex-column">
                     <div class="custom-control custom-radio">
-                        <input id="cash" name="shipping" type="radio" class="my-0 custom-control-input" value="25000" required>
+                        <input id="instantmobil" name="shipping" type="radio" class="my-0 custom-control-input" value="25000" required>
                         <label class="custom-control-label" for="instan">Instant - Mobil</label>
                     </div>
                     <small class="text-muted">1-2 jam - Maks. 100 kg</small>
@@ -87,11 +87,13 @@
             </div>
             </li>
         </ul>
-
+        <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
+        <input type="hidden" name="supermarket_id" value="<?= $supermarket ?>">
+        <input type="hidden" name="user_id" value="<?= $user ?>">
         <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
-      </form>
     </div>
   </div>
+  </form>
 </div>
 <script>
   var quantityInput = document.getElementById('quantity');
