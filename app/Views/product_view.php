@@ -1,7 +1,7 @@
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
-<section style="">
+<section>
   <div class="text-center container py-5">
     <h4 class="mt-4 mb-5"><strong>Rekomendasi Untuk Kamu</strong></h4>
     <div class="row">
@@ -10,7 +10,7 @@
         <div class="card">
           <div class="bg-image hover-zoom ripple" data-mdb-ripple-color="light">
             <img src="<?= $recommendation['gambar']?>"
-              class="w-100" />
+              class="w-50" />
             <a href="#!">
               <div class="hover-overlay">
                 <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
@@ -40,7 +40,7 @@
         <div class="card">
           <div class="bg-image hover-zoom ripple" data-mdb-ripple-color="light">
             <img src="<?= $product['gambar'] ?>"
-              class="w-100" />
+              class="w-50" />
             <a href="#!">
               <div class="mask">
                 <div class="d-flex justify-content-start align-items-end h-100">
