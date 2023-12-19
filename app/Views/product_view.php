@@ -60,7 +60,11 @@
               <p>Rp <?= number_format($product['harga'], 0, ',', '.'); ?></p>
             </h6>
             <div class="d-grid gap-2 col-6 mx-auto">
+              <?php if ($product['stok'] > 0): ?>
                 <a href="/supermarket/<?= $supermarket ?>/checkout/<?= $product['id'] ?>" class="btn btn-primary">Beli</a>
+              <?php else: ?>
+                <button class="btn btn-danger" disabled>Stok Habis</button>
+              <?php endif; ?>
             </div>
           </div>
         </div>
