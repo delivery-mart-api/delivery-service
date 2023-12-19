@@ -9,7 +9,7 @@
     <div class="col-lg-4 col-md-6 mb-4">
         <div class="card">
           <div class="bg-image hover-zoom ripple" data-mdb-ripple-color="light">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/shoes%20(3).webp"
+            <img src="<?= $recommendation['gambar']?>"
               class="w-100" />
             <a href="#!">
               <div class="hover-overlay">
@@ -39,7 +39,7 @@
       <div class="col-lg-4 col-md-6 mb-4">
         <div class="card">
           <div class="bg-image hover-zoom ripple" data-mdb-ripple-color="light">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/shoes%20(3).webp"
+            <img src="<?= $product['gambar'] ?>"
               class="w-100" />
             <a href="#!">
               <div class="mask">
