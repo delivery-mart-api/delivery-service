@@ -34,7 +34,7 @@ class LoginController extends BaseController
         $model = model(LoginModel::class);
         $username = $this->request->getPost('username');
         $password = sha1($this->request->getPost('password'));
-        $cek = $model->getUsers($username, $password);
+        $cek = $model->getSupermarkets($username, $password);
         if ($cek == 0){
             return redirect()->to('/');
         } else {

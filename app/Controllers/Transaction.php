@@ -14,7 +14,7 @@ class Transaction extends ResourceController
         $model = model(LoginModel::class);
         $username = $seg1;
         $password = $seg2;
-        $cek = $model->getUsers($username, $password);
+        $cek = $model->getSupermarkets($username, $password);
         if ($cek == 0) {
             return $this->respond('Wrong Authentication', 401);
         } else {
