@@ -35,20 +35,20 @@ class AllSeeder extends Seeder
             $this->db->table('supermarket')->insert($data);
         }
 
-        $transaction = [
-            [
-                'delivery_cost' => 15000,
-                'address' => 'Jalan Cisitu Indah No.1',
-                'user_id' => '1',
-                'supermarket_id' => '1',
-                'product_id' => '1',
-                'quantity' => 2
-            ]
-        ];
+        // $transaction = [
+        //     [
+        //         'delivery_cost' => 15000,
+        //         'address' => 'Jalan Cisitu Indah No.1',
+        //         'user_id' => '1',
+        //         'supermarket_id' => '1',
+        //         'product_id' => '1',
+        //         'quantity' => 2,
+        //     ]
+        // ];
 
-        foreach($transaction as $data){
-            $this->db->table('transaction')->insert($data);
-        }
+        // foreach($transaction as $data){
+        //     $this->db->table('transaction')->insert($data);
+        // }
 
     }
 }

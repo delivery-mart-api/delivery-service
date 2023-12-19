@@ -30,9 +30,14 @@
           <p class="text-muted">Rp. <span id="harga"><?= number_format($product['harga'], 0, ',', '.'); ?></span></p>
         </li>
         <li class="list-group-item d-flex justify-content-between">
+          <span>Sisa Stok</span>
+          <strong><span id="remainingStock"><?= $product['stok'] ?></span></strong>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
           <span>Total (Rupiah)</span>
           <strong>Rp <span id="total"><?= number_format($product['harga'], 0, ',', '.'); ?></span></strong>
         </li>
+        
       </ul>
     </div>
     <div class="col-md-8 order-md-1">
@@ -95,6 +100,7 @@
         <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
         <input type="hidden" name="supermarket_id" value="<?= $supermarket ?>">
         <input type="hidden" name="user_id" value="<?= $user ?>">
+        <input type="hidden" id="remainingStockInput" name="remainingStock" value="<?= $product['stok'] ?>">
         <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
     </div>
   </div>
@@ -103,7 +109,10 @@
 <script>
   var quantityInput = document.getElementById('quantity');
   var totalElement = document.getElementById('total');
+  var remainingStockElement = document.getElementById('remainingStock');
+  var remainingStockInput = document.getElementById('remainingStockInput');
   var shippingRadios = document.querySelectorAll('input[name="shipping"]');
+  var initialStock = <?= $product['stok'] ?>; // Tambahkan ini
 
   function updateTotal() {
     var quantity = quantityInput.value;
@@ -120,6 +129,10 @@
     var total = quantity * harga + shippingCost;
 
     totalElement.innerText = total.toLocaleString('id-ID');
+    remainingStockElement.innerText = initialStock - quantity;
+
+    // Perbarui nilai input tersembunyi
+    remainingStockInput.value = initialStock - quantity;
 
     if (quantity > maxQuantity) {
       alert('Stok tidak cukup, hanya ada ' + maxQuantity);
@@ -134,5 +147,7 @@
 
   updateTotal();
 </script>
+
+
 
 <?= $this->endSection(); ?>

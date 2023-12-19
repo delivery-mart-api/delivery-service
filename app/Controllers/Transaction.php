@@ -70,6 +70,7 @@ class Transaction extends ResourceController
             'supermarket_id' => 'required|numeric',
             'product_id' => 'required|numeric',
             'quantity' => 'required|numeric',
+            'remainingStock' => 'required|numeric'
         ];
 
         if(!$this->validate($rules)){
@@ -85,8 +86,10 @@ class Transaction extends ResourceController
                 'delivery_cost' => $this->request->getPost('shipping'),
                 'product_id'      => $this->request->getPost('product_id'),
                 'quantity'      => $this->request->getPost('quantity'),
+                'remainingStock'      => $this->request->getPost('remainingStock'),
             ];
             $transaction = $this->model->insert($data);
+            dd($data);
             return redirect()->to("/transaction");
         }
     }
