@@ -29,11 +29,13 @@ Pastikan sistem memenuhi persyaratan berikut sebelum menggunakan aplikasi:
     ```env
     CI_ENVIRONMENT = development
 
-    database.default.hostname = 127.0.0.1
+    database.default.hostname = localhost
     database.default.database = delivery
     database.default.username = root
-    database.default.password =
+    database.default.password = 
     database.default.DBDriver = MySQLi
+    database.default.DBPrefix =
+    database.default.port = 3306
     ```
 
 4. Jalankan migrasi database untuk membuat skema tabel.
