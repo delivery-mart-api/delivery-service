@@ -69,4 +69,4 @@ Login sebagai customer :
 
 ## Panduan Pengguna
 
-- **Admin Role**: Customer dapat melakukan order produk ke supermarket tertentu, mengedit profile, dan melihat transaksi historis ordernya.
+- **Customer**: Customer dapat melakukan order produk ke supermarket tertentu, mengedit profile, dan melihat transaksi historis ordernya.
