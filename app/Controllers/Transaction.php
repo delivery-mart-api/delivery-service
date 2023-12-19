@@ -89,7 +89,6 @@ class Transaction extends ResourceController
                 'remainingStock'      => $this->request->getPost('remainingStock'),
             ];
             $transaction = $this->model->insert($data);
-            dd($data);
             return redirect()->to("/transaction");
         }
     }
