@@ -5,6 +5,11 @@
   <div class="py-4 text-center">
     <h2>Checkout form</h2>
   </div>
+  <?php if (session()->has('validation_errors')): ?>
+    <div class="alert alert-danger" role="alert">
+        <?= implode('<br>', session('validation_errors')) ?>
+    </div>
+  <?php endif; ?>
   <form class="needs-validation" action="/order" method="POST">
   <div class="row mb-4">
     <div class="col-md-4 order-md-2 mb-4">

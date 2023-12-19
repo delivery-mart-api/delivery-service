@@ -73,7 +73,8 @@ class Transaction extends ResourceController
         ];
 
         if(!$this->validate($rules)){
-            return $this->fail($this->validator->getErrors());
+            session()->setFlashdata('validation_errors', $this->validator->getErrors());
+            return redirect()->back();
         } else{
             $user = session()->get('num_user');
             $data = [
