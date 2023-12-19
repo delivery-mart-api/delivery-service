@@ -21,13 +21,13 @@ Pastikan sistem memenuhi persyaratan berikut sebelum menggunakan aplikasi:
 2. Buka terminal dan pindah ke direktori proyek.
 
     ```bash
-    cd supermarket-service
+    cd delivery-service
     ```
 
 3. Buat dan buka file `.env` menggunakan editor teks dan sesuaikan pengaturan berikut sesuai dengan konfigurasi database Anda.
 
     ```env
-    CI_ENVIRONMENT = development
+    CI_ENVIRONMENT = production
 
     database.default.hostname = localhost
     database.default.database = delivery
