@@ -27,7 +27,7 @@ Pastikan sistem memenuhi persyaratan berikut sebelum menggunakan aplikasi:
 3. Buat dan buka file `.env` menggunakan editor teks dan sesuaikan pengaturan berikut sesuai dengan konfigurasi database Anda.
 
     ```env
-    CI_ENVIRONMENT = production
+    CI_ENVIRONMENT = development
 
     database.default.hostname = 127.0.0.1
     database.default.database = delivery
